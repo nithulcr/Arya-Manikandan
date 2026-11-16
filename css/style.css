@@ -13,6 +13,10 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+html.has-lenis { scroll-behavior: auto; }
+html.has-lenis, html.has-lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 body { margin: 0;   font-family: "Roboto", sans-serif; color: var(--ink); background: var(--white); font-weight: 400; }
 a { color: inherit; text-decoration: none; }
 h1, h2{
@@ -74,8 +78,8 @@ h1, h2{
 .stats-grid { min-height: 150px; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; }
 .stat { text-align: center; border-right: 1px solid #aab6b2; }
 .stat:last-child { border: 0; }
-.stat strong { display: block; font-size: 70px; line-height: 1.1; font-weight: 600; }
-.stat strong span { color: #8ab51a; font-weight: 400; margin-left: 3px; }
+.stat strong { display: block; font-size: 45px; line-height: 1.1; font-weight: 400;font-family: "Boldonse", sans-serif;  }
+.stat strong span { color: #8ab51a; font-weight: 400; margin-left: 3px; font-family: "roboto", sans-serif; font-size: 70px; }
 .stat small { display: block; margin-top: 5px; font-size: 16px; }
 .section-pad { padding: 88px 0; }
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 50px; }
@@ -86,13 +90,13 @@ h1, h2{
 
 .about-copy h2, .section-heading h2 { margin: 0 0 18px; font-size: clamp(32px, 4vw, 45px); line-height: 1.6;  }
 .about-copy > p:not(.eyebrow) { max-width: 580px; color: #4a4a4a; font-size: 18px; line-height: 1.5; }
-.highlight { position: relative; z-index: 0; }
+.highlight { position: relative; z-index: 0; display: inline-block;  }
 .highlight:after { content: ""; position: absolute; z-index: -1; height: 10px; left: -2px; right: -2px; bottom: 2px; background: var(--lime); transform: skewX(-12deg); }
 .about-points { display: flex; gap: 22px; margin-top: 25px; flex-wrap: wrap; }
 .about-points div { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; }
 .about-points b { font-size: 22px; }
 .experience-section { padding-top: 15px; }
-.experience-panel { background: var(--green); color: white; border-radius: 24px; padding: 55px 62px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 55px; }
+.experience-panel { background:radial-gradient(circle at 10% 30%, #215b3b, transparent 36%), var(--green); color: white; border-radius: 24px; padding: 55px 62px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 55px; }
 .experience-heading { align-self: center; }
 .experience-heading h2 { margin: 0; font-size: clamp(34px, 4vw, 45px); line-height: 1.6;  }
 .experience-note { max-width: 300px; color: #c4d3cc; font-size: 16px; line-height: 1.5; margin-top: 20px; }
@@ -141,7 +145,7 @@ h1, h2{
  }
 
 
-.contact { padding: 55px 0; background: #f1f6ef; }
+.contact { padding: 0 0 55px 0;  }
 .contact-panel { min-height: 230px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; padding: 38px 50px; border-radius: 20px; color: white; background: radial-gradient(circle at 85% 90%, #235a3d, transparent 36%), var(--green); }
 .contact h2 { margin: 0 0 10px; font-size: clamp(30px, 4vw, 44px);  }
 .contact-panel p:not(.eyebrow) { margin: 0 0 20px; color: #d6e1da; font-size: 16px; }
@@ -156,7 +160,7 @@ h1, h2{
     background-position: center;
     background-repeat: no-repeat;
  }
-.site-footer { padding: 25px 0 12px; background: white; }
+.site-footer { padding: 25px 0 12px; background: #f2f7f1; }
 .footer-wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .footer-wrap .logo { color: var(--green); font-size: 50px; }
 .site-footer nav { display: flex; flex-wrap: wrap; gap: 20px; }
@@ -197,7 +201,7 @@ h1, h2{
   .about-grid, .experience-panel { grid-template-columns: 1fr; gap: 32px; }
 
   .about-copy h2 { font-size: 34px; }
-  .experience-panel { padding: 32px 25px; }
+  .experience-panel { padding: 32px 25px;  }
   .experience-heading h2 { font-size: 36px; }
   .service-grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
   .service-card { padding: 18px; min-height: 165px; }

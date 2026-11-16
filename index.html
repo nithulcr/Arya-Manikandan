@@ -176,6 +176,7 @@
     <p class="copyright">© 2026 Arya. All rights reserved.</p>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.3.8/dist/lenis.min.js"></script>
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.main-nav');
@@ -187,6 +188,50 @@
       nav.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
     }));
+
+    const desktopQuery = window.matchMedia('(min-width: 701px)');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let lenis;
+    let rafId;
+
+    function initLenis() {
+      if (lenis || !window.Lenis || !desktopQuery.matches || prefersReducedMotion.matches) return;
+      lenis = new Lenis({ autoRaf: false });
+      document.documentElement.classList.add('has-lenis');
+      function raf(time) {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
+      rafId = requestAnimationFrame(raf);
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+          const targetId = anchor.getAttribute('href');
+          if (!targetId || targetId === '#') return;
+          const target = document.querySelector(targetId);
+          if (!target) return;
+          e.preventDefault();
+          lenis.scrollTo(target);
+        });
+      });
+    }
+
+    function destroyLenis() {
+      if (!lenis) return;
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      lenis = null;
+      document.documentElement.classList.remove('has-lenis');
+    }
+
+    initLenis();
+    desktopQuery.addEventListener('change', () => {
+      if (desktopQuery.matches) initLenis();
+      else destroyLenis();
+    });
+    prefersReducedMotion.addEventListener('change', () => {
+      if (prefersReducedMotion.matches) destroyLenis();
+      else initLenis();
+    });
   </script>
 </body>
 </html>
