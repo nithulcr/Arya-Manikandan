@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="main-body">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="logo" href="#home">Arya<span>.</span></a>
@@ -184,7 +184,7 @@
   <script src="https://unpkg.com/lenis@1.3.8/dist/lenis.min.js"></script>
   <script>
     const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.main-nav');
+    const nav = document.querySelector('.main-body');
     toggle.addEventListener('click', () => {
       const isOpen = nav.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', String(isOpen));
@@ -237,6 +237,19 @@
       if (prefersReducedMotion.matches) destroyLenis();
       else initLenis();
     });
+
+    // Add class to HTML when scrolling beyond 100px
+function handleScroll() {
+  document.documentElement.classList.toggle(
+    'is-scrolled',
+    window.scrollY > 100
+  );
+}
+
+window.addEventListener('scroll', handleScroll, { passive: true });
+
+// Check initial scroll position
+handleScroll();
   </script>
 </body>
 </html>
